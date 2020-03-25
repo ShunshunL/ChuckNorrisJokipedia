@@ -13,7 +13,7 @@ end
 
 def create_new_account_or_login_prompt
   prompt = TTY::Prompt.new(symbols: {marker: '♥'}, active_color: :cyan)
-  return_value = prompt.select("Do you want to create a new account or login?") do |menu|
+  return_value = prompt.select("Do you want to create a new account or login?\n") do |menu|
     menu.choice 'create new account', 1
     menu.choice 'login', 2
   end 
@@ -69,7 +69,7 @@ end
  
 def display_menu(user)
   prompt = TTY::Prompt.new(symbols: {marker: '♥'} , active_color: :cyan)
-  return_value = prompt.select("How do you want to get your jokes for the day?") do |menu|
+  return_value = prompt.select("How do you want to get your jokes for the day?\n") do |menu|
     menu.choice 'Display a random Chuck Norris joke', 1
     menu.choice 'View saved jokes', 2
     menu.choice 'Select a category of jokes', 3
@@ -79,7 +79,7 @@ def display_menu(user)
   if return_value == 1
     get_and_display_a_random_joke(user)
   elsif return_value == 2
-      display_saved_jokes(user)
+    display_saved_jokes(user)
   elsif return_value == 3
     select_category(user)
   elsif return_value == 4
@@ -89,11 +89,12 @@ def display_menu(user)
 end 
 
 def select_category(user)
+  system "clear"
   prompt1 = TTY::Prompt.new
   prompt2 = TTY::Prompt.new
   prompt3 = TTY::Prompt.new
   prompt4 = TTY::Prompt.new(symbols: {marker: '♥'})
-  category = prompt4.select("Choose a category: ", %w(animal career celebrity dev explicit fashion food history money movie music political religion science sport travel), active_color: :cyan)
+  category = prompt4.select("Choose a category: \n", %w(animal career celebrity dev explicit fashion food history money movie music political religion science sport travel), active_color: :cyan)
   new_joke = get_joke_from_category(category)
   input = prompt2.yes?('Do you want joke to be saved?')
   if input
@@ -106,14 +107,21 @@ def select_category(user)
 end 
 
 def display_saved_jokes(user)
+  system "clear"
   puts 'These are your saved jokes:'
   puts user.saved_jokes.map.with_index(1){|joke, index| index.to_s + '. ' + joke["jokes_saved"]}
   prompt = TTY::Prompt.new
   input = prompt.yes?("\nDo you want to view more jokes?")
-  input ? display_menu(user) : exit
+  if input  
+    display_menu(user)
+  else 
+    system "clear"
+    exit
+  end
 end 
 
 def get_and_display_a_random_joke(user)
+  system "clear"
   prompt1 = TTY::Prompt.new
   prompt2 = TTY::Prompt.new
   new_joke = get_joke
@@ -121,7 +129,7 @@ def get_and_display_a_random_joke(user)
   if input
     save_joke_to_user(new_joke, user.username)
     entered = prompt2.yes?('Do you want another joke?')
-    entered ? get_and_display_a_random_joke : display_menu
+    entered ? get_and_display_a_random_joke(user) : display_menu
   else 
     display_menu(user)
   end
