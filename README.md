@@ -4,7 +4,7 @@ A simple Ruby application that utilizes a command-line interface to display rand
 
 ## Getting Started
 
-1. Fork 
+1. Fork this repository
 2. `cd` into the folder you want this to be located through terminal.
 3. Clone it into the folder using `git clone`.
 
