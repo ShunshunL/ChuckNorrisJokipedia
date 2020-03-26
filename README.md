@@ -42,4 +42,5 @@ Type this in terminal: `ruby bin/run.rb`
 ## Author
 
 **Shunshun Lyu** 
+
 [Read more about me](https://www.shunshunl.com/)
