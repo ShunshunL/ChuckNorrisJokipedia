@@ -11,9 +11,11 @@ A simple Ruby application that utilizes a command-line interface to display rand
 ### Prerequisites
 
 Paste this into your termimal and it should automatically install everything you need:
-`curl -so- https://raw.githubusercontent.com/learn-co-curriculum/flatiron-manual-setup-validator/master/automatic-install.sh | bash 2> /dev/null`  
+`curl -so- https://raw.githubusercontent.com/learn-co-curriculum/flatiron-manual-setup-validator/master/automatic-install.sh | bash 2> /dev/null` 
+
 You should see this if this worked: 
-```##########################
+```
+##########################
 # INSTALLATIONS COMPLETE #
 ##########################
 ```
@@ -23,7 +25,7 @@ https://github.com/learn-co-curriculum/environment-mac-os-catalina-setup
 
 ### Installing
 
-1. Type `bundle install` in your terminal 
+Type `bundle install` in your terminal 
 
 ## Deployment
 
