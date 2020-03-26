@@ -109,15 +109,9 @@ end
 def display_saved_jokes(user)
   system "clear"
   puts 'These are your saved jokes:'
-  puts user.saved_jokes.map.with_index(1){|joke, index| index.to_s + '. ' + joke["jokes_saved"]}
-  prompt = TTY::Prompt.new
-  input = prompt.yes?("\nDo you want to view more jokes?")
-  if input  
-    display_menu(user)
-  else 
-    system "clear"
-    exit
-  end
+  user_saved_jokes = user.saved_jokes.map.with_index(1){|joke, index| index.to_s + '. ' + joke["jokes_saved"]}
+  puts user_saved_jokes
+  delete_saved_jokes(user)
 end 
 
 def get_and_display_a_random_joke(user)
@@ -135,3 +129,29 @@ def get_and_display_a_random_joke(user)
   end
 end
 
+def delete_saved_jokes(user)
+  prompt = TTY::Prompt.new 
+  input = prompt.yes?("\nDo you want to delete any of your jokes?")
+  if input 
+    index_input = TTY::Prompt.new 
+    jokes_to_be_deleted = index_input.multi_select("Which joke do you want to delete?\nYou can select multiple.\n") do |menu|
+      user.saved_jokes.map{|joke| menu.choice joke["jokes_saved"]}
+    end 
+    jokes_to_be_deleted.each do |joke_to_be_deleted|
+      id = SavedJoke.find_by(jokes_saved: joke_to_be_deleted).id 
+      SavedJoke.delete(id)
+    end 
+    system "clear"
+    puts "Okay! Your joke(s) of choice was deleted." 
+    display_menu(user)
+  else 
+    prompt1 = TTY::Prompt.new
+    input = prompt1.yes?("\nDo you want to view more jokes?")
+    if input  
+      display_menu(user)
+    else 
+      system "clear"
+      exit
+    end
+  end
+end 
