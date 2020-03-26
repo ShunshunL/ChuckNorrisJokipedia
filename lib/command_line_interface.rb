@@ -123,7 +123,7 @@ def get_and_display_a_random_joke(user)
   if input
     save_joke_to_user(new_joke, user.username)
     entered = prompt2.yes?('Do you want another joke?')
-    entered ? get_and_display_a_random_joke(user) : display_menu
+    entered ? get_and_display_a_random_joke(user) : display_menu(user)
   else 
     display_menu(user)
   end
