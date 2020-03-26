@@ -39,6 +39,8 @@ Type this in terminal: `ruby bin/run.rb`
 * [Active Record](https://guides.rubyonrails.org/active_record_basics.html) - used to manage model relationship in database
 * [TTY::Prompt](https://github.com/piotrmurach/tty-prompt) - used to prettify the app and makes the user experience intuitive
 
+![ScreenShot](lib/imgs/Screen Shot 2020-03-26 at 12.07.45 PM.png)
+
 ## Author
 
 **Shunshun Lyu** 
