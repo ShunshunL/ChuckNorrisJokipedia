@@ -138,8 +138,8 @@ def delete_saved_jokes(user)
       user.saved_jokes.map{|joke| menu.choice joke["jokes_saved"]}
     end 
     jokes_to_be_deleted.each do |joke_to_be_deleted|
-      id = SavedJoke.find_by(jokes_saved: joke_to_be_deleted).id 
-      SavedJoke.delete(id)
+      id = user.saved_jokes.find_by(jokes_saved: joke_to_be_deleted).id 
+      user.saved_jokes.delete(id)
     end 
     system "clear"
     puts "Okay! Your joke(s) of choice was deleted." 
