@@ -43,4 +43,4 @@ Type this in terminal: `ruby bin/run.rb`
 
 **Shunshun Lyu** 
 
-[Read more about me](https://www.shunshunl.com/)
+[Read more about me](https://www.shunshunl.com/2020/03/26/my-first-command-line-project.html)
